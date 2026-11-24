@@ -1,0 +1,83 @@
+@import "tailwindcss";
+
+@theme {
+  --color-canvas: #f6f6f8;
+  --color-surface: #ffffff;
+  --color-indigo-navy: #111a4a;
+  --color-indigo-ink: #0b1030;
+  --color-signal-orange: #ec652b;
+  --color-signal-orange-soft: #fbe2d3;
+  --color-seafoam-700: #2e7f60;
+  --color-seafoam-500: #44b48b;
+  --color-seafoam-50: #e6f5ed;
+  --color-silver-lining: #e6e6ea;
+  --color-muted-ink: #6b7280;
+  --color-danger: #d64545;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-pill: 999px;
+
+  --text-caption: 12px;
+  --text-body: 14px;
+  --text-card-title: 18px;
+  --text-section: 32px;
+  --text-hero: 56px;
+
+  --shadow-hairline: 0 1px 2px rgba(16, 24, 40, 0.04), 0 1px 3px rgba(16, 24, 40, 0.06);
+  --shadow-xl-2: 0 12px 32px -12px rgba(16, 24, 40, 0.18), 0 2px 6px rgba(16, 24, 40, 0.06);
+}
+
+:root {
+  color-scheme: light;
+}
+
+html, body {
+  background: var(--color-canvas);
+  color: var(--color-indigo-ink);
+  font-family: var(--font-sans);
+  letter-spacing: -0.005em;
+  -webkit-font-smoothing: antialiased;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+/* wallet adapter overrides */
+.wallet-adapter-button {
+  background: var(--color-indigo-navy) !important;
+  border-radius: 8px !important;
+  height: 40px !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  padding: 0 16px !important;
+  font-family: var(--font-sans) !important;
+}
+.wallet-adapter-button:not([disabled]):hover {
+  background: #1a2560 !important;
+}
+.wallet-adapter-modal-wrapper {
+  background: #ffffff !important;
+  border-radius: 12px !important;
+}
+
+@keyframes fadein {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.fadein { animation: fadein 150ms ease-out both; }
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.fade-in-up { animation: fade-in-up 600ms cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+.fade-in-up-delay-1 { animation: fade-in-up 600ms cubic-bezier(0.2, 0.7, 0.2, 1) 100ms both; }
+.fade-in-up-delay-2 { animation: fade-in-up 600ms cubic-bezier(0.2, 0.7, 0.2, 1) 200ms both; }
+.fade-in-up-delay-3 { animation: fade-in-up 600ms cubic-bezier(0.2, 0.7, 0.2, 1) 300ms both; }

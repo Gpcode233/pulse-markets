@@ -1,0 +1,81 @@
+@import "tailwindcss";
+
+/* 60% cool paper, 30% night ink, 10% ember. Thermal colour always means heat. */
+@theme {
+  --color-canvas: #f2f4fa;
+  --color-surface: #ffffff;
+  --color-indigo-navy: #14173d;
+  --color-indigo-ink: #10132f;
+  --color-signal-orange: #d63a12;
+  --color-signal-orange-soft: #ffe8dd;
+  --color-seafoam-700: #10704f;
+  --color-seafoam-500: #23a878;
+  --color-seafoam-50: #e2f5ec;
+  --color-silver-lining: rgb(16 19 47 / 0.1);
+  --color-muted-ink: #5a5f7d;
+  --color-danger: #b3261e;
+
+  --font-sans: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-familjen), ui-sans-serif, system-ui, sans-serif;
+
+  --shadow-hairline: 0 1px 2px rgb(20 23 61 / 0.05);
+  --shadow-xl-2: 0 24px 60px -24px rgb(20 23 61 / 0.35);
+}
+
+:root { color-scheme: light; interpolate-size: allow-keywords; }
+html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+body {
+  background: var(--color-canvas);
+  color: var(--color-indigo-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; letter-spacing: -0.025em; }
+p { text-wrap: pretty; }
+.tabular { font-variant-numeric: tabular-nums; }
+.display-1 { font-size: clamp(2.75rem, 1.4rem + 5vw, 5.25rem); line-height: 0.98; font-weight: 600; letter-spacing: -0.04em; }
+.display-2 { font-size: clamp(2rem, 1.3rem + 2.8vw, 3.5rem); line-height: 1.04; font-weight: 600; letter-spacing: -0.035em; }
+
+button:not(:disabled), [role="tab"], summary, a { cursor: pointer; }
+.press { transition: scale 150ms ease-out, background-color 150ms ease-out, border-color 150ms ease-out; }
+.press:active { scale: 0.97; }
+:focus-visible { outline: 2px solid var(--color-signal-orange); outline-offset: 3px; }
+
+@layer components { .panel { background: #fff; border: 1px solid var(--color-silver-lining); border-radius: 28px; } }
+
+.thermal-field {
+  overflow: hidden;
+  background: linear-gradient(100deg in oklch, #0a0d31 25%, #351cb0 55%, #d4267f 75%, #ff5a1f 90%, #ffc23d);
+}
+@media (max-width: 1023px) {
+  .thermal-field { background: linear-gradient(175deg in oklch, #0a0d31 45%, #351cb0 65%, #d4267f 82%, #ff5a1f); }
+}
+.thermal-field canvas, .thermal-object canvas { opacity: 0; transition: opacity 500ms ease-out; }
+.thermal-field canvas[data-ready], .thermal-object canvas[data-ready] { opacity: 1; }
+
+/* Heat gauge: position of the pin is the chance of the event. */
+.heat-bar { background: linear-gradient(90deg in oklch, #351cb0, #d4267f 40%, #ff5a1f 70%, #ffc23d); }
+
+details::details-content { height: 0; overflow: clip; transition: height 220ms ease-out, content-visibility 220ms allow-discrete; }
+details[open]::details-content { height: auto; }
+summary::-webkit-details-marker { display: none; }
+
+@keyframes enter { from { opacity: 0; scale: 0.97; } to { opacity: 1; scale: 1; } }
+.fadein { animation: enter 200ms ease-out both; }
+/* Dialogs are centred with `translate`, so `scale` is safe to animate. */
+
+.wallet-adapter-button {
+  background: var(--color-indigo-navy) !important;
+  border-radius: 999px !important;
+  height: 42px !important;
+  font: 600 14px var(--font-sans) !important;
+  padding: 0 18px !important;
+}
+.wallet-adapter-modal-wrapper { background: #fff !important; border-radius: 28px !important; color: var(--color-indigo-ink) !important; }
+.wallet-adapter-modal-title { color: var(--color-indigo-ink) !important; }
+.wallet-adapter-modal-list .wallet-adapter-button { color: #fff !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 1ms !important; transition-duration: 1ms !important; scroll-behavior: auto !important; }
+}
